@@ -1,6 +1,8 @@
 # Selenium Scaffolder
 Generate boilerplate code for automated testing using Selenium WebDriver.
 
+Access the live site on [GitHub Pages](https://captnbigshot.github.io/SeleniumScaffolder)
+
 ## Installation
 
 #### From Source
