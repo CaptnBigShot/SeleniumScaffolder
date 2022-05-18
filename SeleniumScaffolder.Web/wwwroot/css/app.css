@@ -396,7 +396,7 @@ h4 {
 
 
 textarea:focus {
-    box-shadow: 0 0 0 .05rem #6c757d !important;
+    box-shadow: 0 0 0 .1rem #6c757d !important;
 }
 
 .dotted-line {

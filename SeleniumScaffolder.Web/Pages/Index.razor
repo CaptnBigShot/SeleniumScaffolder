@@ -89,9 +89,7 @@ else
             Web Elements
         </div>
         <div class="code-output">
-            <code>
-                @GetPageElementWebElements()
-            </code>
+            <code>@GetPageElementWebElements()</code>
             <div class="pt-3">
                 <button type="button" class="btn btn-secondary btn-sm" @onclick="CopyWebElementsTextToClipboard">Copy</button>
             </div>
@@ -103,9 +101,7 @@ else
             Element Interactions
         </div>
         <div class="code-output">
-            <code>
-                @GetPageElementInteractions()
-            </code>
+            <code>@GetPageElementInteractions()</code>
             <div class="pt-3">
                 <button type="button" class="btn btn-secondary btn-sm" @onclick="CopyElementInteractionsTextToClipboard">Copy</button>
             </div>
@@ -160,10 +156,10 @@ else
                                 </ul>
                                 <br />
                                 <h6 class="text-muted">Web Elements</h6>
-                                <code>@elementType.WebElements</code>
+                                <code>@elementType.WebElements.Trim()</code>
                                 <br />
                                 <h6 class="text-muted">Interactions</h6>
-                                <code>@elementType.Interactions</code>
+                                <code>@elementType.Interactions.Trim()</code>
                             </div>
                         </div>
                     </div>
@@ -224,7 +220,7 @@ else
                                 </ul>
                                 <br />
                                 <h6 class="text-muted">Output</h6>
-                                <code>@elementGrouping.Output</code>
+                                <code>@elementGrouping.Output.Trim()</code>
                             </div>
                         </div>
                     </div>
