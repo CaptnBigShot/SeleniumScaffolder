@@ -1,0 +1,675 @@
+﻿PageElementTypes:
+- Name: Other
+  Abbreviations:
+  - ''
+  - other
+  Interactions: |
+    public string Get{ElementName}()
+    {
+        return {ElementName}.Text;
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+- Name: TextBox
+  Abbreviations:
+  - tx
+  - txt
+  - text
+  - tb
+  - txb
+  - txbx
+  - txtbx
+  - txtbox
+  - textbox
+  Interactions: |
+    public void Set{ElementName}(string {ElementVariableName})
+    {
+        {ElementName}.SendKeys({ElementVariableName}, true, true);
+    }
+    
+    public string Get{ElementName}()
+    {
+        return {ElementName}.GetDomProperty("value");
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+- Name: Select
+  Abbreviations:
+  - slct
+  - select
+  - selector
+  - dropdown
+  Interactions: |
+    public void Set{ElementName}(string {ElementVariableName})
+    {
+        {ElementName}SelectElement.SelectByText({ElementVariableName});
+    }
+    
+    public string Get{ElementName}()
+    {
+        return {ElementName}SelectElement.SelectedOption.Text;
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+    
+    private SelectElement {ElementName}SelectElement =>
+        new SelectElement({ElementName});
+- Name: Radio
+  Abbreviations:
+  - rad
+  - radio
+  - radbtn
+  - radiobutton
+  Interactions: |
+    public void Set{ElementName}()
+    {
+        {ElementName}.Click();
+    }
+    
+    public bool Get{ElementName}()
+    {
+        return {ElementName}.IsSelected;
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+- Name: Checkbox
+  Abbreviations:
+  - cb
+  - chk
+  - chkbx
+  - chkbox
+  - checkbox
+  Interactions: |
+    public void Set{ElementName}(bool {ElementVariableName})
+    {
+        {ElementName}CheckboxElement.SetCheckbox({ElementVariableName});
+    }
+    
+    public bool Get{ElementName}()
+    {
+        return {ElementName}CheckboxElement.IsChecked;
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+    
+    private CheckboxElement {ElementName}CheckboxElement =>
+        new CheckboxElement({ElementName});
+- Name: Button
+  Abbreviations:
+  - bt
+  - btn
+  - button
+  Interactions: |
+    public void Click{ElementName}()
+    {
+        {ElementName}.Click();
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+- Name: Link
+  Abbreviations:
+  - lk
+  - lnk
+  - link
+  Interactions: |
+    public void Click{ElementName}()
+    {
+        {ElementName}.Click();
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+- Name: Table
+  Abbreviations:
+  - tbl
+  - table
+  Interactions: |
+    public List<List<string>> Get{ElementName}()
+    {
+        return {ElementName}.GetTableData(2, int.MaxValue);
+    }
+  WebElements: |
+    private IWebElement {ElementName} =>
+        _webDriver.FindElement({FindsBy});
+    
+    private TableElement {ElementName}TableElement =>
+        new TableElement({ElementName});
+- Name: KendoComboBox
+  Abbreviations:
+  - kcb
+  - kdcmbx
+  - kncmbx
+  - kndcmbx
+  - kndcmbbx
+  - kndcmbobx
+  - kndcmbobox
+  - kndocmbbx
+  - kndocmbobx
+  - kndocombobx
+  - kndocombobox
+  - kendocmbbx
+  - kendocmbbox
+  - kendocmbobox
+  - kendocombobox
+  - kendocombobox
+  Interactions: |
+    public void Set{ElementName}(string {ElementVariableName})
+    {
+        {ElementName}.SelectByText({ElementVariableName});
+    }
+  WebElements: |
+    private KendoComboBoxElement {ElementName} =>
+        new KendoComboBoxElement(_webDriver, {FindsByExpression});
+- Name: KendoMultiSelect
+  Abbreviations:
+  - kms
+  - kdmltslct
+  - kndmltslct
+  - kndomltslct
+  - kndomltislct
+  - kndomultiselect
+  - kendomultiselect
+  Interactions: |
+    public void Set{ElementName}(string {ElementVariableName})
+    {
+        {ElementName}.SelectByText({ElementVariableName});
+    }
+  WebElements: |
+    private KendoMultiSelectElement {ElementName} =>
+        new KendoMultiSelectElement(_webDriver, {FindsByExpression});
+- Name: NgElement
+  Abbreviations:
+  - ng
+  - ngo
+  - ngother
+  - ngelem
+  - ngelmnt
+  - ngelemnt
+  - ngelement
+  Interactions: |
+    public string Get{ElementName}()
+    {
+        return {ElementName}.Text;
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+- Name: NgTextBox
+  Abbreviations:
+  - ngtxt
+  - ngtxtbx
+  - ngtxtbox
+  - ngtxtbx
+  - ngtxtbx
+  - ngtxtbox
+  - ngtextbox
+  Interactions: |
+    public void Set{ElementName}(string {ElementVariableName})
+    {
+        {ElementName}.SendKeys({ElementVariableName}, true, true);
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+- Name: NgSelect
+  Abbreviations:
+  - ngslct
+  - ngdropdown
+  - ngselect
+  Interactions: |
+    public void Set{ElementName}(string {ElementVariableName})
+    {
+        _ngWebDriver.SetUiSelectElementValue({ElementName}, {ElementVariableName}, true);
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+- Name: NgRadio
+  Abbreviations:
+  - ngrad
+  - ngradio
+  - ngradbtn
+  - ngradiobtn
+  - ngradiobutton
+  Interactions: |
+    public void Set{ElementName}()
+    {
+        {ElementName}.Click();
+    }
+    
+    public bool Get{ElementName}()
+    {
+        return {ElementName}.IsSelected;
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+- Name: NgCheckbox
+  Abbreviations:
+  - ngcb
+  - ngchk
+  - ngchkbx
+  - ngchkbox
+  - ngcheckbox
+  Interactions: |
+    public void Set{ElementName}(bool {ElementVariableName})
+    {
+        {ElementName}CheckboxElement.SetCheckbox({ElementVariableName});
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+    
+    private CheckboxElement {ElementName}CheckboxElement =>
+        new CheckboxElement({ElementName});
+- Name: NgButton
+  Abbreviations:
+  - ngbtn
+  - ngbutton
+  Interactions: |
+    public void Click{ElementName}()
+    {
+        {ElementName}.Click();
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+- Name: NgLink
+  Abbreviations:
+  - nglk
+  - nglnk
+  - nglink
+  Interactions: |
+    public void Click{ElementName}()
+    {
+        {ElementName}.Click();
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+- Name: NgTable
+  Abbreviations:
+  - ngtbl
+  - ngtable
+  Interactions: |
+    public List<List<string>> Get{ElementName}()
+    {
+        return {ElementName}.GetTableData();
+    }
+  WebElements: |
+    private NgWebElement {ElementName} =>
+        _ngWebDriver.FindElement({FindsBy});
+    
+    private TableElement {ElementName}TableElement =>
+        new TableElement({ElementName});
+- Name: NgListOfRows
+  Abbreviations:
+  - nglst
+  - nglist
+  - ngrows
+  - nglistrows
+  - nglistofrows
+  Interactions: |
+    public List<Dto> Get{ElementName}()
+    {
+        return {ElementName}.Select(ReadTodoRow).ToList();
+    }
+  WebElements: |
+    private IList<NgWebElement> {ElementName} =>
+        _ngWebDriver.FindElements({FindsBy});
+- Name: NgListRowItem
+  Abbreviations:
+  - ngrwitm
+  - nglstrwitm
+  - nglstrowitm
+  - nglstrowitem
+  - nglistrowitem
+  Interactions: ''
+  WebElements: |
+    private static NgWebElement {ElementName}(NgWebElement row) =>
+        row.FindElement({FindsBy});
+- Name: NgListRowTextBox
+  Abbreviations:
+  - ngrwtxt
+  - ngrwtxtbx
+  - ngrwtxtbox
+  - nglstrwtxtbx
+  - nglstrowtxtbx
+  - nglstrowtxtbox
+  - nglistrowtextbox
+  Interactions: |
+    public void Set{ElementName}(NgWebElement row, string {ElementVariableName})
+    {
+        {ElementName}(row).SendKeys({ElementVariableName}, true, true);
+    }
+  WebElements: |
+    private static NgWebElement {ElementName}(NgWebElement row) =>
+        row.FindElement({FindsBy});
+- Name: NgListRowSelect
+  Abbreviations:
+  - ngrwslct
+  - ngrwdropdown
+  - ngrwselect
+  - nglstrwslct
+  - nglistrowselect
+  Interactions: |
+    public void Set{ElementName}(NgWebElement row, string {ElementVariableName})
+    {
+        _ngWebDriver.SetUiSelectElementValue({ElementName}(row), {ElementVariableName}, true);
+    }
+  WebElements: |
+    private static NgWebElement {ElementName}(NgWebElement row) =>
+        row.FindElement({FindsBy});
+- Name: NgListRowCheckbox
+  Abbreviations:
+  - ngrwcb
+  - ngrwchk
+  - ngrwchkbx
+  - ngrwchkbox
+  - ngrwcheckbox
+  - nglstrwchk
+  - nglstrwchkbx
+  - nglistrowcheckbox
+  Interactions: |
+    public void Set{ElementName}(NgWebElement row, bool {ElementVariableName})
+    {
+        {ElementName}CheckboxElement(row).SetCheckbox({ElementVariableName});
+    }
+  WebElements: |
+    private static NgWebElement {ElementName}(NgWebElement row) =>
+        row.FindElement({FindsBy});
+    
+    private CheckboxElement {ElementName}CheckboxElement(NgWebElement row) =>
+        new CheckboxElement({ElementName}(row));
+- Name: NgListRowDetailsDropdown
+  Abbreviations:
+  - ngrwdtls
+  - ngrwdetails
+  - ngrwdtlsdrpdwn
+  - ngrwdetailsdropdown
+  - nglstrwdtlsdrpdwn
+  - nglistrowdetailsdropdown
+  Interactions: |
+    private static void {ElementName}ClickForRow(NgWebElement row)
+    {
+        {ElementName}(row).Click();
+        Thread.Sleep(750);
+    }
+  WebElements: |
+    private static NgWebElement {ElementName}(NgWebElement row) =>
+        row.FindElement({FindsBy});
+- Name: NgListRowDetailsDropdownItem
+  Abbreviations:
+  - ngrwdtlsitm
+  - ngrwdetailsitem
+  - ngrwdtlsdrpdwnitm
+  - ngrowdetailsdropdownitem
+  - nglstrwdtlsdrpdwnitm
+  - nglistrowdetailsdropdownitem
+  Interactions: |
+    private static void {ElementName}ClickForRow(NgWebElement row)
+    {
+        {ElementName}(row).Click();
+        Thread.Sleep(750);
+    }
+
+    public static void {ElementName}(string todo)
+    {
+        {ElementName}DetailsClickForRow(FindRow(todo));
+        {ElementName}ClickForRow(FindRow(todo));
+        Thread.Sleep(750);
+    }
+  WebElements: |
+    private static NgWebElement {ElementName}(NgWebElement row) =>
+        row.FindElement({FindsBy});
+PageElementLocatorTypes:
+- ByType: By
+  Method: CssSelector
+  Abbreviations:
+  - css
+  - cssslct
+  - cssslctr
+  - cssselect
+  - cssselector
+- ByType: By
+  Method: Id
+  Abbreviations:
+  - id
+- ByType: By
+  Method: Xpath
+  Abbreviations:
+  - x
+  - xp
+  - xpth
+  - xpath
+- ByType: By
+  Method: ClassName
+  Abbreviations:
+  - cn
+  - cl
+  - cls
+  - clss
+  - class
+  - classname
+- ByType: By
+  Method: LinkText
+  Abbreviations:
+  - lk
+  - lnk
+  - link
+  - lnktxt
+  - linktxt
+  - linktext
+- ByType: By
+  Method: PartialLinkText
+  Abbreviations:
+  - plk
+  - plnk
+  - plink
+  - plnktxt
+  - plinktext
+  - partiallinktext
+- ByType: By
+  Method: Name
+  Abbreviations:
+  - nm
+  - nme
+  - name
+- ByType: By
+  Method: TagName
+  Abbreviations:
+  - tg
+  - tag
+  - tgnme
+  - tagnme
+  - tagname
+- ByType: NgBy
+  Method: Binding
+  Abbreviations:
+  - bd
+  - bn
+  - bnd
+  - bndg
+  - bndng
+  - binding
+- ByType: NgBy
+  Method: ExactBinding
+  Abbreviations:
+  - eb
+  - ebd
+  - ebn
+  - ebnd
+  - ebndg
+  - ebndng
+  - ebindng
+  - ebinding
+  - exbn
+  - exbnd
+  - exbndg
+  - exbndng
+  - exbindng
+  - exbinding
+  - exctbind
+  - exctbindng
+  - exctbinding
+  - exactbind
+  - exactbnd
+  - exactbndng
+  - exactbindng
+  - exactbinding
+- ByType: NgBy
+  Method: ExactRepeater
+  Abbreviations:
+  - er
+  - erp
+  - erpt
+  - erptr
+  - erepeat
+  - erepeater
+  - exr
+  - exrp
+  - exrpt
+  - exrptr
+  - exrepeater
+  - exactrepeat
+  - exactrepeater
+- ByType: NgBy
+  Method: Model
+  Abbreviations:
+  - md
+  - mdl
+  - mod
+  - modl
+  - model
+- ByType: NgBy
+  Method: Repeater
+  Abbreviations:
+  - rp
+  - rpt
+  - rptr
+  - repeat
+  - repeater
+- ByType: NgBy
+  Method: SelectedOption
+  Abbreviations:
+  - slop
+  - slcop
+  - slctop
+  - slctdop
+  - slctedopt
+  - slctopt
+  - slctdopt
+  - selectedoption
+PageElementGroupings:
+- Name: Create Dto
+  PageElementGroupingElementTypes:
+  - Name: TextBox
+    Output: "    public string {ElementName} { get; set; }"
+  - Name: Select
+    Output: "    public string {ElementName} { get; set; }"
+  - Name: Radio
+    Output: "    public bool {ElementName} { get; set; }"
+  - Name: Checkbox
+    Output: "    public bool {ElementName} { get; set; }"
+  - Name: NgTextBox
+    Output: "    public string {ElementName} { get; set; }"
+  - Name: NgSelect
+    Output: "    public string {ElementName} { get; set; }"
+  - Name: NgRadio
+    Output: "    public bool {ElementName} { get; set; }"
+  - Name: NgCheckbox
+    Output: "    public bool {ElementName} { get; set; }"
+  - Name: NgListRowItem
+    Output: "    public string {ElementName} { get; set; }"
+  - Name: NgListRowTextBox
+    Output: "    public string {ElementName} { get; set; }"
+  - Name: NgListRowSelect
+    Output: "    public string {ElementName} { get; set; }"
+  - Name: NgListRowRadio
+    Output: "    public bool {ElementName} { get; set; }"
+  - Name: NgListRowCheckbox
+    Output: "    public bool {ElementName} { get; set; }"
+  Output: |
+    public class Dto
+    {
+    {GroupedPageElementsOutput}
+    }
+- Name: Set Form Values Using Dto
+  PageElementGroupingElementTypes:
+  - Name: TextBox
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  - Name: Select
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  - Name: Radio
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  - Name: Checkbox
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  - Name: NgTextBox
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  - Name: NgSelect
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  - Name: NgRadio
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  - Name: NgCheckbox
+    Output: "    Set{ElementName}(dto.{ElementName});"
+  Output: |
+    public void SetFormValues(Dto dto)
+    {
+    {GroupedPageElementsOutput}
+    }
+- Name: Read Ng List Row Using Dto
+  PageElementGroupingElementTypes:
+  - Name: NgListRowItem
+    Output: "    {ElementName} = {ElementName}(row).Text,"
+  Output: |
+    private static Dto ReadTodoRow(NgWebElement row)
+    {
+        return new Dto
+        {
+        {GroupedPageElementsOutput}
+        };
+    }
+- Name: Find Ng List Row Using Dto
+  PageElementGroupingElementTypes:
+  - Name: NgListRowItem
+    Output: "    && x.{ElementName} == dto.{ElementName}"
+  Output: |
+    private NgWebElement FindTodoRow(Dto dto)
+    {
+        try
+        {
+            var idx = GetTodos().FindIndex(x =>
+                1 == 1
+            {GroupedPageElementsOutput}
+            );
+            
+            return TodosList[idx];
+        }
+        catch (Exception e)
+        {
+            var ex = new Exception($"Could not find dto row. Exception: '{e}'");
+            ex.Data.Add("dto", JsonConvert.SerializeObject(dto));
+            
+            throw ex;
+        }
+    }
+- Name: Set Ng List Row Form Values Using Dto
+  PageElementGroupingElementTypes:
+  - Name: NgListRowTextBox
+    Output: "    Set{ElementName}(row, dto.{ElementName});"
+  - Name: NgListRowSelect
+    Output: "    Set{ElementName}(row, dto.{ElementName});"
+  - Name: NgListRowCheckbox
+    Output: "    Set{ElementName}(row, dto.{ElementName});"
+  Output: |
+    public void SetFormValues(int rowIdx, Dto dto)
+    {
+        var row = rows[rowIdx];
+    {GroupedPageElementsOutput}
+    }
