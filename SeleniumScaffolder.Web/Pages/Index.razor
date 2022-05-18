@@ -119,7 +119,7 @@ else
             </div>
             <div class="code-output">
                 <code>
-                    @grouping.ProcessedOutput
+                    @grouping.ProcessedOutput.Trim()
                 </code>
                 <div class="pt-3">
                     <button type="button" class="btn btn-secondary btn-sm" @onclick="() => CopyPageElementGroupingTextToClipboard(grouping)">Copy</button>
