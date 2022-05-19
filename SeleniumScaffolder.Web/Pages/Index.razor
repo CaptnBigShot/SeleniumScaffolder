@@ -12,12 +12,13 @@ else
         <h4>Bulk Import Page Elements</h4>
         <div class="col-12">
             <div class="mb-3">
-                <div class="head">Selenium Scaffolder Settings YAML</div>
-                <textarea value="@_seleniumScaffolderSettingsInput" @onchange="@((args) => _seleniumScaffolderSettingsInput = args.Value.ToString())" class="form-control code-input" id="seleniumScaffolderSettingsTextArea" rows="2"></textarea>
-            </div>
-            <div class="mb-3">
                 <div class="head">Input Page Elements</div>
-                <textarea value="@_bulkImportPageElementsInput" @onchange="@((args) => _bulkImportPageElementsInput = args.Value.ToString())" class="form-control code-input" id="bulkImportPageElementsTextArea" rows="10"></textarea>
+                <textarea value="@_bulkImportPageElementsInput"
+                          @onchange="@((args) => _bulkImportPageElementsInput = args.Value.ToString())"
+                          placeholder="LogIn | Button | XPath | //*[.='Log In']"
+                          class="form-control code-input"
+                          id="bulkImportPageElementsTextArea"
+                          rows="10"></textarea>
             </div>
             <div class="mb-1">
                 <button class="button-primary" @onclick="SubmitBulkImportPageElements">Submit</button>
@@ -132,58 +133,90 @@ else
     <div class="dotted-line"></div>
     <div class="row pt-3">
         <h5>Selenium Scaffolder Settings</h5>
-        <div class="col-8">
+        <div class="mb-3">
+            <div class="head">Settings YAML</div>
+            <textarea value="@_seleniumScaffolderSettingsInput"
+                      @onchange="@((args) => _seleniumScaffolderSettingsInput = args.Value.ToString())"
+                      class="form-control code-input"
+                      id="seleniumScaffolderSettingsTextArea"
+                      rows="5"></textarea>
+        </div>
+        <div class="col-lg-8">
             <div class="head">Page Element Types</div>
             <div class="accordion accordion-flush" id="accordianElementTypes">
                 @foreach (var elementType in _seleniumScaffolderSettings.PageElementTypes.OrderBy(x => x.Name))
                 {
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="elementTypeHeader-@elementType.Name">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#elementTypeCollapse-@elementType.Name" aria-expanded="false" aria-controls="elementTypeCollapse-@elementType.Name">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#elementTypeCollapse-@elementType.Name"
+                                    aria-expanded="false"
+                                    aria-controls="elementTypeCollapse-@elementType.Name">
                                 @elementType.Name
                             </button>
                         </h2>
-                        <div id="elementTypeCollapse-@elementType.Name" class="accordion-collapse collapse" aria-labelledby="elementTypeHeader-@elementType.Name" data-bs-parent="#accordianElementTypes">
+                        <div id="elementTypeCollapse-@elementType.Name"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="elementTypeHeader-@elementType.Name"
+                             data-bs-parent="#accordianElementTypes">
                             <div class="accordion-body">
-                                <h6 class="text-muted">Abbreviations</h6>
-                                <ul class="list-group list-group-flush">
-                                    @foreach (var abbreviation in elementType.Abbreviations)
-                                    {
-                                        <li class="list-group-item">@abbreviation</li>
-                                    }
-                                </ul>
-                                <br />
-                                <h6 class="text-muted">Web Elements</h6>
-                                <code>@elementType.WebElements.Trim()</code>
-                                <br />
-                                <h6 class="text-muted">Interactions</h6>
-                                <code>@elementType.Interactions.Trim()</code>
+                                <div>
+                                    <h6 class="text-muted">Abbreviations</h6>
+                                    <ul class="list-group list-group-flush">
+                                        @foreach (var abbreviation in elementType.Abbreviations)
+                                        {
+                                            <li class="list-group-item">@abbreviation</li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="pt-3">
+                                    <h6 class="text-muted">Web Elements</h6>
+                                    <code>@elementType.WebElements.Trim()</code>
+                                </div>
+                                <div class="pt-3">
+                                    <h6 class="text-muted">Interactions</h6>
+                                    <code>@elementType.Interactions.Trim()</code>
+                                </div>
                             </div>
                         </div>
                     </div>
                 }
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4">
             <div class="head">Page Element Locator Types</div>
             <div class="accordion accordion-flush" id="accordianElementLocatorTypes">
-                @foreach (var elementLocatorType in _seleniumScaffolderSettings.PageElementLocatorTypes.OrderBy(x => x.ByType).ThenBy(x => x.Method))
+                @foreach (var elementLocatorType in _seleniumScaffolderSettings.PageElementLocatorTypes
+                    .OrderBy(x => x.ByType)
+                    .ThenBy(x => x.Method))
                 {
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="locatorTypeHeader-@elementLocatorType.ByType-@elementLocatorType.Method">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#locatorTypeCollapse-@elementLocatorType.ByType-@elementLocatorType.Method" aria-expanded="false" aria-controls="locatorTypeCollapse-@elementLocatorType.ByType-@elementLocatorType.Method">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#locatorTypeCollapse-@elementLocatorType.ByType-@elementLocatorType.Method"
+                                    aria-expanded="false"
+                                    aria-controls="locatorTypeCollapse-@elementLocatorType.ByType-@elementLocatorType.Method">
                                 @elementLocatorType.ByType @elementLocatorType.Method
                             </button>
                         </h2>
-                        <div id="locatorTypeCollapse-@elementLocatorType.ByType-@elementLocatorType.Method" class="accordion-collapse collapse" aria-labelledby="locatorTypeHeader-@elementLocatorType.ByType-@elementLocatorType.Method" data-bs-parent="#accordianElementLocatorTypes">
+                        <div id="locatorTypeCollapse-@elementLocatorType.ByType-@elementLocatorType.Method"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="locatorTypeHeader-@elementLocatorType.ByType-@elementLocatorType.Method"
+                             data-bs-parent="#accordianElementLocatorTypes">
                             <div class="accordion-body">
-                                <h6 class="text-muted">Abbreviations</h6>
-                                <ul class="list-group list-group-flush">
-                                    @foreach (var abbreviation in elementLocatorType.Abbreviations)
-                                    {
-                                        <li class="list-group-item">@abbreviation</li>
-                                    }
-                                </ul>
+                                <div>
+                                    <h6 class="text-muted">Abbreviations</h6>
+                                    <ul class="list-group list-group-flush">
+                                        @foreach (var abbreviation in elementLocatorType.Abbreviations)
+                                        {
+                                            <li class="list-group-item">@abbreviation</li>
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,33 +225,44 @@ else
         </div>
     </div>
     <div class="row pt-3">
-        <div class="col-8">
+        <div class="col-lg-8">
             <div class="head">Page Element Groupings</div>
             <div class="accordion accordion-flush" id="accordianElementGroupings">
                 @foreach (var elementGrouping in _seleniumScaffolderSettings.PageElementGroupings.OrderBy(x => x.Name))
                 {
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="elementGroupingHeader-@elementGrouping.Name.RemoveWhitespace()">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#elementGroupingCollapse-@elementGrouping.Name.RemoveWhitespace()" aria-expanded="false" aria-controls="elementGroupingCollapse-@elementGrouping.Name.RemoveWhitespace()">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#elementGroupingCollapse-@elementGrouping.Name.RemoveWhitespace()"
+                                    aria-expanded="false"
+                                    aria-controls="elementGroupingCollapse-@elementGrouping.Name.RemoveWhitespace()">
                                 @elementGrouping.Name
                             </button>
                         </h2>
-                        <div id="elementGroupingCollapse-@elementGrouping.Name.RemoveWhitespace()" class="accordion-collapse collapse" aria-labelledby="elementGroupingHeader-@elementGrouping.Name.RemoveWhitespace()" data-bs-parent="#accordianElementGroupings">
+                        <div id="elementGroupingCollapse-@elementGrouping.Name.RemoveWhitespace()"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="elementGroupingHeader-@elementGrouping.Name.RemoveWhitespace()"
+                             data-bs-parent="#accordianElementGroupings">
                             <div class="accordion-body">
-                                <h6 class="text-muted">Element Types</h6>
-                                <ul class="list-group list-group-flush">
-                                    @foreach (var groupingElementType in elementGrouping.PageElementGroupingElementTypes)
-                                    {
-                                        <li class="list-group-item">
-                                            @groupingElementType.Name
-                                            <br />
-                                            <code>@groupingElementType.Output</code>
-                                        </li>
-                                    }
-                                </ul>
-                                <br />
-                                <h6 class="text-muted">Output</h6>
-                                <code>@elementGrouping.Output.Trim()</code>
+                                <div>
+                                    <h6 class="text-muted">Element Types</h6>
+                                    <ul class="list-group list-group-flush">
+                                        @foreach (var groupingElementType in elementGrouping.PageElementGroupingElementTypes)
+                                        {
+                                            <li class="list-group-item">
+                                                @groupingElementType.Name
+                                                <br/>
+                                                <code>@groupingElementType.Output</code>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="pt-3">
+                                    <h6 class="text-muted">Output</h6>
+                                    <code>@elementGrouping.Output.Trim()</code>
+                                </div>
                             </div>
                         </div>
                     </div>
